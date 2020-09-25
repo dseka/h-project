@@ -15,18 +15,15 @@ library(shiny)
 library(shinydashboard)
 library(shinyWidgets)
 library(htmlwidgets)
-setwd("C:/Covid Data/Spatial Data Files")
-new_civ=readRDS("CIV_adm2.sf.rds")
-coordinate <- st_coordinates(new_civ)
+new_civ=readRDS("https://github.com/dseka/h-project/blob/master/CIV_adm2.sf.rds")
 long=c(-3.8, -6.0, -6.7, -7.0, -3.4, -3.3, -7.4, -7.3, -5.9, -5.3, -5.2,-4.1, -4.3, -4.7, -4.5, -4.6, -3.7, -7.8, -7.2, -7.9, -6.7, -5.8, -6.5, -5.7, -4.7, -5.3, -4.9, -7.45, -5.9, -6.7, -5.0, -3.5, -3.4)
 lat=c(5.3, 5.2, 5.9, 5.0, 6.6, 5.4, 10.1, 9.3, 6.2, 5.8, 7.0, 7.5, 6.5, 7.0, 5.9, 5.3, 6.0, 6.3, 6.92, 7.5, 6.8, 6.98, 9.7, 9.4, 9.5, 7.7, 8.5, 8.3, 8.32, 8.25, 6.4, 9.5, 7.95)
-
-ci_covid <- as.data.frame(data.table::fread("C:/Tutorial on Cov Page/data/covid_ci_region.csv"))
+ci_covid <- as.data.frame(data.table::fread("https://github.com/dseka/h-project/blob/master/covid_ci_region.csv"))
 ci_cov=data.frame(ci_covid, long, lat)
 n_ci = new_civ %>% left_join(ci_cov, by="NAME_2") %>% slice(1:33)
 nciv=st_as_sf(n_ci)
 
-cov_ci <- as.data.frame(data.table::fread("C:/Tutorial on Cov Page/data/covid_CI.csv"))
+cov_ci <- as.data.frame(data.table::fread("https://github.com/dseka/h-project/blob/master/Covid_CI.csv"))
 cov_ci <- type_convert(cov_ci,trim_ws=TRUE,col_types = cols(percent_confirmed =col_double()),locale = locale(decimal_mark = ","))
 
 cumul_confirmed<-cov_ci %>% select(6)  %>% slice(1)
@@ -49,20 +46,13 @@ world_deaths <- as.data.frame(data.table::fread("https://raw.githubusercontent.c
 #owid<-data.table::fread("https://covid.ourworldindata.org/data/owid-covid-data.csv")
 #af=owid %>% filter(continent=="Africa")
 #af_tot_case <- af %>% group_by(location) %>% summarise(tot_cases=last(total_cases)) #%>% select(2) %>% sum()
-country_names<-c("Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi",                      "Cameroon", "Cape Verde", "Central African Republic", "Chad", "Comoros", "Congo" ,                     "Cote d'Ivoire", "Democratic Republic of Congo", "Djibouti" , "Egypt" , "Equatorial Guinea",            "Eritrea", "Ethiopia", "Gabon", "Gambia" , "Ghana", "Guinea",  "Guinea-Bissau", "Kenya",                       "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius",                   "Morocco", "Mozambique" , "Namibia", "Niger", "Nigeria", "Rwanda", "Sao Tome and Principe", "Senegal", "Seychelles", "Sierra Leone", "Somalia", "South Africa",  "South Sudan", "Sudan", "Swaziland", "Tanzania", "Togo", "Tunisia", "Uganda",  "Western Sahara",              "Zambia", "Zimbabwe", "Cabo Verde",  "Congo (Brazzaville)", "Congo (Kinshasa)" )
 
+country_names<-c("Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cameroon", "Cape Verde", "Central African Republic", "Chad", "Comoros", "Congo",  "Cote d'Ivoire", "Democratic Republic of Congo", "Djibouti" , "Egypt" , "Equatorial Guinea",  "Eritrea", "Ethiopia", "Gabon", "Gambia", "Ghana", "Guinea",  "Guinea-Bissau", "Kenya", "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique" , "Namibia", "Niger", "Nigeria", "Rwanda", "Sao Tome and Principe", "Senegal", "Seychelles", "Sierra Leone", "Somalia", "South Africa",  "South Sudan", "Sudan", "Swaziland", "Tanzania", "Togo", "Tunisia", "Uganda", "Western Sahara", "Zambia", "Zimbabwe", "Cabo Verde", "Congo (Brazzaville)", "Congo (Kinshasa)" )
 af_country<- world_total %>% filter(world_total[,2] %in% country_names)
 af_total<- sum(af_country[, ncol(af_country)])
-
 af_recovered<- world_recovered %>% filter(world_recovered[,2] %in% country_names) %>% select(ncol(world_recovered)) %>% sum()
-af_total
-af_recovered
-
 af_deaths<- world_deaths %>% filter(world_deaths[,2] %in% country_names) %>% select(ncol(world_deaths)) %>% sum()
-
 af_active<-af_total - (af_recovered + af_deaths)
-af_deaths
-af_active
 
 world_total[is.na(world_total)]=0
 world_recovered[is.na(world_recovered)]=0
@@ -88,23 +78,14 @@ ci_active_case<- ci_tot_case - (cumul_rec + cumul_dea)
 ci_active<- ifelse(ci_active_cases > ci_active_case, ci_active_cases, ci_active_case)
 
 wt <- world_total %>% select(ncol(world_total)) %>% sum()
-wt
-
 rec <- world_recovered %>% select(ncol(world_recovered)) %>% sum()
-rec
-
-
 deaths <- world_deaths %>% select(ncol(world_deaths)) %>% sum()
-deaths
 wa = wt - (rec + deaths)
-wa
-
 
 ci_tot_case= format(ci_tot_case, big.mark=" ", scientific=FALSE, trim=TRUE)
 cumul_rec<- format(cumul_rec, big.mark=" ", scientific=FALSE, trim=TRUE)
 cumul_dea<- format(cumul_dea, big.mark=" ", scientific=FALSE, trim=TRUE)
 ci_active<- format(ci_active, big.mark=" ", scientific=FALSE, trim=TRUE)
-
 
 wt <- format(wt, big.mark=" ", scientific=FALSE, trim=TRUE)
 wa <- format(wa, big.mark=" ", scientific=FALSE, trim=TRUE)
@@ -155,10 +136,7 @@ rate_dt=data.frame(Rate=rate,Date=rate_date)
 e_date=dt$Date[-1]
 e_dt=data.frame(Deaths=e_daily, Date=e_date)
 
-
 nciv$tooltip_point <- c(paste0("Region: ", nciv$NAME_2, "\nCases: ", nciv$active_cases))  
-
-
 
 ui <- fluidPage(style="padding:0px",
                 setBackgroundColor(color="#000000"),
@@ -169,9 +147,6 @@ ui <- fluidPage(style="padding:0px",
                          .tabbable > .nav > li > a[data-value='t3'] {background-color: green; color:olive}
                          .tabbable > .nav > li[class=active]> a {background-color: black; color:#B1B1B1; border-color:#101010; border-top-color:aqua;}
                           ")),
-                
-                
-                
                 titlePanel(
                     tags$h4("COVID-19 Situation in Cote d'Ivoire by", span(style='color:blue', 'the School of Natural Sciences, University Nangui Abrogoua,'), "Abidjan, Cote d'Ivoire",
                             style="background-color:#212121; padding:10px; text-align:left; 
