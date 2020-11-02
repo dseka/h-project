@@ -51,4 +51,54 @@ Date,Age,Sex,Comorbidity
 07-06-2020,70,M,HBP+Diabetes+Obesity
 07-05-2020,66,M,HBP+Obesity
 07-05-2020,49,M,HBP
-
+07-04-2020,61,M,Diabetes
+07-04-2020,73,M,Diabetes
+07-03-2020,57,F,None
+07-03-2020,67,M,HIV
+06-30-2020,40,F,Diabetes
+06-30-2020,78,M,HBP
+06-27-2020,54,M,None
+06-27-2020,78,F,HBP+Diabetes
+06-26-2020,70,M,None
+06-26-2020,53,M,HBP+Diabetes+Obesity
+06-26-2020,52,M,Kidney Failure
+06-26-2020,56,F,HBP+Diabetes+Obesity
+06-25-2020,7,M,None
+06-25-2020,39,M,None
+06-23-2020,51,F,HBP+Diabetes+Obesity
+06-23-2020,66,F,Lupus
+06-22-2020,76,F,Stroke
+06-22-2020,35,M,None
+06-21-2020,58,F,HBP+Diabetes
+06-21-2020,39,F,None
+06-20-2020,49,F,HIV+Kidney Failure
+06-20-2020,63,M,HBP+Diabetes
+06-20-2020,45,M,Obesity
+06-18-2020,44,M,Diabetes
+06-17-2020,58,M,HBP+Diabetes
+06-17-2020,60,M,None
+06-15-2020,73,M,Diabetes
+06-12-2020,,,
+06-12-2020,,,
+06-12-2020,,,
+06-12-2020,,,
+06-10-2020,22,M,Obesity
+06-10-2020,47,M,Obesity
+06-10-2020,62,M,Diabetes+Kidney Failure
+06-08-2020,61,M,None
+06-08-2020,61,M,Diabetes+CVD
+06-05-2020,68,M,HBP+Diabetes+CVD
+06-03-2020,64,F,HBP+CVD
+06-03-2020,60,M,Obesity+CVD
+05-30-2020,77,M,HBP+Diabetes
+05-28-2020,80,F,None
+05-27-2020,64,F,HBP+Diabetes
+05-23-2020,61,F,Diabetes
+05-20-2020,55,M,Kidney Failure
+05-18-2020,77,M,Diabetes+CVD
+05-17-2020,58,M,Diabetes
+05-17-2020,59,M,Diabetes+Obesity+Stroke
+05-16-2020,50,M,Asthma
+05-13-2020,35,M,Cancer+Kidney Failure
+05-13-2020,73,M,Diabetes
+05-13-2020,,F,None
