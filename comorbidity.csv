@@ -102,3 +102,23 @@ Date,Age,Sex,Comorbidity
 05-13-2020,35,M,Cancer+Kidney Failure
 05-13-2020,73,M,Diabetes
 05-13-2020,,F,None
+05-09-2020,70,M,Stroke
+05-07-2020,64,F,HBP
+05-07-2020,66,M,HBP+Kidney Failure
+05-05-2020,,,
+05-03-2020,,,
+05-03-2020,,,
+05-01-2020,60,M,HBP
+04-22-2020,,,
+04-21-2020,,,
+04-21-2020,,,
+04-21-2020,,,
+04-20-2020,69,M,None
+04-19-2020,62,F,Cancer+CVD
+04-19-2020,68,M,HBP+Diabetes
+04-19-2020,62,M,HBP+Diabetes+Obesity
+04-13-2020,73,M,HBP+Diabetes
+04-11-2020,,,
+04-05-2020,46,M,None
+04-05-2020,46,F,HBP+Obesity+Asthma
+03-30-2020,58,F,Diabetes
